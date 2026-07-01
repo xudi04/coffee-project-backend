@@ -197,7 +197,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
     },
     async callback(ctx) {
         const { token } = ctx.request.body; // iyzico dönüşte bir token verir
-        const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+        const FRONTEND_URL = process.env.FRONTEND_URL;
 
         try {
             // Burada normal şartlarda iyzico'ya "Ödeme sonucunu getir" (retrieve) isteği atılır.
