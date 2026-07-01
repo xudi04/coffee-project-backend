@@ -111,7 +111,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
                 currency: Iyzipay.CURRENCY.TRY,
                 basketId: 'B' + Date.now(),
                 paymentGroup: Iyzipay.PAYMENT_GROUP.PRODUCT,
-                callbackUrl: 'http://localhost:1337/api/orders/callback',
+                callbackUrl: process.env.FRONTEND_URL + '/api/orders/callback',
 
                 // ⚡ DİNAMİK ALANLAR: Frontend'den gelen gerçek müşteri bilgileri iyzico'ya iletiliyor
                 buyer: {
