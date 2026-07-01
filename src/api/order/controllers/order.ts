@@ -202,7 +202,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
         try {
             // Burada normal şartlarda iyzico'ya "Ödeme sonucunu getir" (retrieve) isteği atılır.
             console.log("💰 İyzico Ödeme Tamamlandı, Token:", token);
-
+            ctx.status = 303;
             // Kullanıcıyı dinamik URL üzerinden başarı sayfasına yönlendiriyoruz:
             return ctx.redirect(`${FRONTEND_URL}/payment-success`);
 
