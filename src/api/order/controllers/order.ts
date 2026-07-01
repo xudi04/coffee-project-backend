@@ -77,7 +77,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
             validatedItems
         };
     },
-    
+
     async create(ctx) {
         try {
             // 🛡️ 1. ADIM: Frontend'den gelen nesnenin içindeki cartItems dizisini nokta atışı alıyoruz
@@ -197,19 +197,18 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
     },
     async callback(ctx) {
         const { token } = ctx.request.body; // iyzico dönüşte bir token verir
+        const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
         try {
             // Burada normal şartlarda iyzico'ya "Ödeme sonucunu getir" (retrieve) isteği atılır.
-            // Şimdilik testi tamamlamak için doğrudan frontend'deki başarı sayfana yönlendiriyoruz:
-
             console.log("💰 İyzico Ödeme Tamamlandı, Token:", token);
 
-            // Kullanıcıyı frontend sitendeki başarı sayfasına yönlendiriyoruz (Örn port 5173 ise):
-            return ctx.redirect('http://localhost:5173/payment-success');
+            // Kullanıcıyı dinamik URL üzerinden başarı sayfasına yönlendiriyoruz:
+            return ctx.redirect(`${FRONTEND_URL}/payment-success`);
 
         } catch (err) {
             console.error("Callback Hatası:", err.message);
-            return ctx.redirect('http://localhost:5173/payment-failed');
+            return ctx.redirect(`${FRONTEND_URL}/payment-failed`);
         }
     }
 }));
