@@ -64,7 +64,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
                 id: product.id,
                 documentId: product.documentId || null,
                 name: product.name,
-                price: itemPrice.toFixed(2),
+                price: subTotal.toFixed(2),
                 quantity: itemQuantity,
                 // 👇 Kullanıcının seçtiği öğütme tipini kaybetmemek için içeri gömüyoruz
                 grindOption: item.grindOption || 'Belirtilmedi'
